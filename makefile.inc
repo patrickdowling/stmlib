@@ -117,7 +117,7 @@ else ifeq ($(FAMILY),f0xx)
 
 MODEL_DEFINE = STM32F0XX
 STARTUP_OBJ   = $(BUILD_DIR)startup_stm32f0xx.o
-LINKER_SCRIPT = stmlib/linker_scripts/stm32f0xx_flash$(LD_SUFFIX).ld
+LINKER_SCRIPT = stmlib/linker_scripts/stm32f0xx_flash_$(DENSITY)$(LD_SUFFIX).ld
 FW_STDDRIVER_DIR = $(STM32_PATH)/STM32F0xx_StdPeriph_Driver
 ARCHFLAGS = -mcpu=cortex-m0 -mthumb -mthumb-interwork -funroll-loops
 ARCH_DEFINE = GCC_ARMCM0
@@ -199,7 +199,8 @@ LDFLAGS = \
 			-T $(LINKER_SCRIPT) \
 			$(ARCHFLAGS) \
 			$(INCFLAGS) \
-			-L$(STM32_PATH)
+			-L$(STM32_PATH) \
+			-L$(dir $(LINKER_SCRIPT))
 
 
 # ------------------------------------------------------------------------------
