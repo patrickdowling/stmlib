@@ -115,7 +115,12 @@ OPENOCD_TARGET = f3x
 
 else ifeq ($(FAMILY),f0xx)
 
-MODEL_DEFINE = STM32F0XX
+# If STM32F0XX, the default type STM32F051 is used int stm32f0xx.h, so this is
+# a workaround (and requires some patches to some stmlib files that use the
+# STM32F0XX as a model define; it might be harmless in the end though.
+
+MODEL_DEFINE ?= STM32F0XX
+PROJECT_CONFIGURATION += -DSTM32F0
 STARTUP_OBJ   = $(BUILD_DIR)startup_stm32f0xx.o
 LINKER_SCRIPT = stmlib/linker_scripts/stm32f0xx_flash_$(DENSITY)$(LD_SUFFIX).ld
 FW_STDDRIVER_DIR = $(STM32_PATH)/STM32F0xx_StdPeriph_Driver

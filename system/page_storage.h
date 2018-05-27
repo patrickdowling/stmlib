@@ -49,7 +49,7 @@
 
 #else
 
-  #ifdef STM32F0XX
+  #if defined STM32F0XX  || defined STM32F0
     #include <stm32f0xx_conf.h>
   #else
     #include <stm32f10x_conf.h>

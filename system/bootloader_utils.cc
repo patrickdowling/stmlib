@@ -30,7 +30,7 @@
 
 #ifndef STM32F4XX
 
-#ifdef STM32F0XX
+#if defined STM32F0XX || defined STM32F0
   #include <stm32f0xx_conf.h>
 #else 
   #ifdef STM32F37X
